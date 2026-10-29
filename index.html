@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taman Pikiran — Gabriella Samuel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--mid:#12172e;--mid2:#1c2347;--lav:#b8a9d9;--sage:#9cb59a;--cream:#f6ecd9;--gold:#e3c27a;--ink:#e9e3f3;--muted:#b9b3cc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:radial-gradient(ellipse at top,var(--mid2),var(--mid) 60%) fixed;color:var(--ink);font:400 17px/1.7 Nunito,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:var(--cream);line-height:1.15;margin:0 0 .5em}
+h2{font-size:clamp(2rem,5vw,3rem)}
+a{color:var(--gold)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn{background:linear-gradient(135deg,var(--gold),#c9a24f);color:#241b0b;border:0;border-radius:99px;padding:.7em 1.5em;font-weight:600;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px #e3c27a55}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid var(--lav)}
+#stars,#flies{position:fixed;inset:0;pointer-events:none;z-index:0}
+#stars{background:radial-gradient(1.5px 1.5px at 20% 30%,#fff9,transparent),radial-gradient(1px 1px at 70% 20%,#fff8,transparent),radial-gradient(1.5px 1.5px at 40% 75%,#fff8,transparent),radial-gradient(1px 1px at 85% 60%,#fff9,transparent),radial-gradient(1px 1px at 10% 80%,#fff7,transparent);background-size:300px 300px}
+.moon{position:fixed;top:8%;right:7%;width:70px;height:70px;border-radius:50%;box-shadow:inset -18px 0 0 0 var(--cream);filter:drop-shadow(0 0 18px #f6ecd988);pointer-events:none;opacity:.8;z-index:0}
+.fly{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px 3px #e3c27a99;animation:drift var(--d) ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0);opacity:.2}to{transform:translate(var(--x),var(--y));opacity:1}}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:#12172ecc;backdrop-filter:blur(8px);border-bottom:1px solid #b8a9d933}
+nav .in{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.4rem;color:var(--gold);text-decoration:none;font-weight:700}
+nav ul{display:flex;gap:.2rem;list-style:none;margin:0;padding:0}
+nav li a{color:var(--ink);text-decoration:none;padding:.35rem .7rem;border-radius:99px;font-size:.9rem;transition:background .2s}
+nav li a:hover,nav li a.on{background:#b8a9d93a;color:var(--gold)}
+#burger{display:none;background:none;border:1px solid var(--lav);color:var(--cream);border-radius:8px;padding:.3rem .7rem}
+@media(max-width:860px){#burger{display:block}nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#12172ef2;padding:.5rem 1rem 1rem}nav ul.show{display:flex}}
+main{position:relative;z-index:1}
+section{max-width:1000px;margin:auto;padding:6rem 1.25rem 3rem;min-height:70vh}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+.sub{color:var(--sage);letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin:0 0 .4rem}
+#beranda{display:flex;flex-direction:column;justify-content:center;min-height:100vh;text-align:center;align-items:center}
+#beranda h1{font-size:clamp(2.8rem,9vw,5.5rem);background:linear-gradient(90deg,var(--cream),var(--gold),var(--lav));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.5rem;color:var(--lav)}
+.page{background:linear-gradient(135deg,#f6ecd9,#eadfc6);color:#2b2540;border-radius:6px 18px 18px 6px;padding:2rem clamp(1.2rem,4vw,3rem);box-shadow:0 20px 50px #0007,inset 8px 0 14px -8px #0004;border-left:6px solid #7f6aa8}
+.page h2,.page h3{color:#3a2f5c}.page p{margin:.8em 0}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:#1c2347cc;border:1px solid #b8a9d94d;border-radius:16px;padding:1.2rem;color:var(--ink);text-align:left;transition:transform .25s,border-color .25s,box-shadow .25s;width:100%}
+.card:hover,.card[aria-pressed=true],.card[aria-expanded=true]{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 26px #e3c27a26}
+.flower{font-size:2rem;display:block}
+.panel{margin-top:1rem;padding:1.1rem 1.3rem;border-left:3px solid var(--gold);background:#12172e99;border-radius:0 12px 12px 0;min-height:3.5rem}
+.shelf{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end;border-bottom:10px solid #6b5640;padding-bottom:0}
+.book{border:0;border-radius:4px 8px 8px 4px;color:var(--cream);padding:1rem .8rem;text-align:left;writing-mode:horizontal-tb;box-shadow:inset 6px 0 8px #0005,0 4px 12px #0006;transition:transform .25s;font-family:"Cormorant Garamond",serif;font-size:1.05rem;font-weight:600}
+.book:hover,.book[aria-pressed=true]{transform:translateY(-10px)}
+.book.main{flex:1 1 260px;min-height:230px;background:linear-gradient(160deg,#5b4a8c,#2c2552);font-size:1.4rem;border-top:3px solid var(--gold)}
+.book.s{flex:0 1 150px;min-height:150px}.b1{background:#3f5a4a}.b2{background:#4a3f6b}.b3{background:#6b4a3f}
+.tl{position:relative;padding-left:2rem;margin:0}
+.tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--gold),var(--lav));box-shadow:0 0 12px var(--gold)}
+.tl .it{position:relative;margin-bottom:1.2rem}
+.tl .it::before{content:"";position:absolute;left:-2rem;top:1.1rem;width:18px;height:18px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+details{background:#1c2347cc;border:1px solid #b8a9d94d;border-radius:16px;padding:1rem 1.2rem}
+summary{cursor:pointer;font-family:"Cormorant Garamond",serif;font-size:1.4rem;color:var(--cream);font-weight:600}
+.ph{color:var(--gold);font-style:italic}
+.door{min-height:150px;background:linear-gradient(160deg,#2c2552,#1c2347)}
+.door b{font-family:"Cormorant Garamond",serif;font-size:1.35rem;color:var(--cream);display:block;margin-bottom:.3rem}
+.chips{display:flex;flex-wrap:wrap;gap:.7rem}
+.chip{background:#9cb59a22;border:1px solid var(--sage);color:var(--cream);border-radius:99px;padding:.5em 1.1em;transition:all .2s}
+.chip:hover,.chip[aria-pressed=true]{background:var(--sage);color:#14201a;transform:scale(1.05)}
+#jurnal p{font-family:"Cormorant Garamond",serif;font-size:1.35rem;color:#2b2540}
+#kontak{text-align:center}
+.cts{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin:1.5rem 0}
+.cts a,.cts span{border:1px solid var(--lav);padding:.6em 1.2em;border-radius:99px;text-decoration:none;color:var(--cream)}
+.cts span{opacity:.7}
+.row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem;position:relative;z-index:1}
+#top{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:60;width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);background:#12172ee6;color:var(--gold);opacity:0;pointer-events:none;transition:opacity .3s}
+#top.show{opacity:1;pointer-events:auto}
+#modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;background:#0a0d1ecc;padding:1rem;perspective:1200px}
+#modal.show{display:grid}
+#modal .box{max-width:560px;width:100%;max-height:88vh;overflow:auto;transform-origin:left center;animation:door .7s cubic-bezier(.2,.8,.3,1)}
+@keyframes door{from{transform:rotateY(-80deg);opacity:0}to{transform:none;opacity:1}}
+.box h3{font-size:1.9rem}.box dt{font-weight:600;color:#5b4a8c;margin-top:.8em}.box dd{margin:0}
+/* fairy */
+#fairy{position:fixed;left:0;top:0;z-index:80;width:64px;height:64px;pointer-events:none;display:none}
+#fairy.on{display:block}
+#fairy button{pointer-events:auto;background:none;border:0;padding:0;width:64px;height:64px;filter:drop-shadow(0 0 10px #e3c27acc);animation:bob 3s ease-in-out infinite}
+#fairy button:active{transform:scale(1.25) rotate(12deg)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.wing{transform-origin:32px 32px;animation:flap .25s ease-in-out infinite alternate}.wr{animation-direction:alternate-reverse}
+@keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.55)}}
+#bubble{position:absolute;bottom:72px;left:-20px;width:max-content;max-width:min(240px,70vw);background:var(--cream);color:#2b2540;border-radius:14px;padding:.55rem .85rem;font-size:.9rem;line-height:1.4;opacity:0;transform:translateY(6px);transition:all .3s;pointer-events:none;box-shadow:0 6px 18px #0006}
+#bubble.show{opacity:1;transform:none}
+.sp{position:fixed;z-index:85;pointer-events:none;color:var(--gold);animation:spark 900ms ease-out forwards}
+@keyframes spark{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at center,var(--mid2),#080b1a);display:grid;place-items:center;text-align:center;padding:1rem;transition:opacity .9s}
+#intro.out{opacity:0;pointer-events:none}
+.bookwrap{perspective:1400px;width:min(300px,78vw);height:min(400px,60vh);position:relative}
+.cv,.pg{position:absolute;inset:0;border-radius:6px 16px 16px 6px}
+.cv{background:linear-gradient(150deg,#5b4a8c,#241f4a);border:2px solid var(--gold);transform-origin:left center;transition:transform 1.6s cubic-bezier(.5,0,.2,1);display:flex;flex-direction:column;justify-content:center;padding:1.5rem;z-index:2;box-shadow:0 20px 60px #000a;backface-visibility:hidden}
+.cv h1{font-size:2.3rem;color:var(--gold);margin:0 0 .6rem}.cv p{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--cream);margin:0}
+.pg{background:var(--cream);z-index:1}
+.bookwrap.open .cv{transform:rotateY(-165deg)}
+.glow{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:#f9e3a4;opacity:0;z-index:3;box-shadow:0 0 120px 80px #e3c27acc}
+.bookwrap.open .glow{animation:glow 3s ease-out forwards}
+@keyframes glow{30%{opacity:1}to{opacity:.3;transform:scale(2)}}
+.ifairy{position:absolute;left:50%;top:50%;z-index:4;width:64px;opacity:0}
+.bookwrap.open .ifairy{animation:fly 2.8s .7s ease-in forwards}
+@keyframes fly{0%{opacity:1;transform:translate(-50%,-50%) scale(.4)}100%{opacity:0;transform:translate(120px,-70vh) scale(1.6)}}
+.pt{position:absolute;left:50%;top:50%;z-index:3;pointer-events:none;animation:pt 2.8s ease-out forwards}
+@keyframes pt{to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+#intro .acts{margin-top:2rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style></head>
+<body>
+<div id="stars" aria-hidden="true"></div><div class="moon" aria-hidden="true"></div><div id="flies" aria-hidden="true"></div>
+
+<div id="intro" role="dialog" aria-label="Pembuka cerita">
+ <div>
+  <div class="bookwrap" id="bw"><div class="pg"></div><div class="glow"></div>
+   <svg class="ifairy" viewBox="0 0 64 64" aria-hidden="true"><use href="#fsvg"/></svg>
+   <div class="cv"><h1>Taman Pikiran</h1><p>Setiap Pikiran Menyimpan Cerita. Inilah Ceritaku.</p></div></div>
+  <div class="acts"><button class="btn" id="open">Buka Ceritaku</button><button class="btn ghost" id="skip">Lewati Intro</button></div>
+ </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="fsvg">
+ <ellipse class="wing" cx="20" cy="26" rx="15" ry="9" fill="#b8a9d9" opacity=".85" transform="rotate(-25 20 26)"/>
+ <ellipse class="wing wr" cx="44" cy="26" rx="15" ry="9" fill="#b8a9d9" opacity=".85" transform="rotate(25 44 26)"/>
+ <path d="M26 34h12l-3 16H29z" fill="#9cb59a"/><circle cx="32" cy="27" r="7" fill="#f6ecd9"/><path d="M26 24q6-9 12 0q-6-3-12 0" fill="#e3c27a"/><circle cx="32" cy="12" r="2" fill="#fff8d6"/></g></defs></svg>
+
+<nav aria-label="Navigasi utama"><div class="in"><a class="logo" href="#beranda">Taman Pikiran</a>
+ <button id="burger" aria-expanded="false" aria-controls="menu">Menu ☰</button><ul id="menu"></ul></div></nav>
+
+<main>
+<section id="beranda"><p class="sub">The Awakening</p><h1>Gabriella Samuel</h1>
+ <p class="tag">Sarjana Psikologi (S.Psi.)</p><p class="tag" style="font-size:1.2rem">“Setiap Pikiran Menyimpan Cerita. Inilah Ceritaku.”</p>
+ <p style="max-width:640px" class="rv">Selamat datang di Taman Pikiran, sebuah ruang kecil tempat pengalaman, pemikiran, dan karya bertumbuh menjadi cerita. Saya Gabriella Samuel, lulusan Sarjana Psikologi yang tertarik pada perilaku manusia, komunikasi, dinamika komunitas, dan bagaimana setiap interaksi dapat menciptakan sesuatu yang bermakna.</p>
+ <div class="row"><a class="btn" href="#tentang">Jelajahi Ceritaku</a><a class="btn ghost" href="#proyek">Lihat Portofolio</a></div></section>
+
+<section id="tentang"><p class="sub">Tentang Saya</p><h2>Sang Penjaga Taman Kecil</h2>
+ <div class="page rv"><p>Saya adalah lulusan Sarjana Psikologi yang memiliki ketertarikan pada perilaku manusia, dinamika hubungan sosial, komunikasi, dan bagaimana individu membangun hubungan dengan lingkungan sekitarnya.</p>
+ <p>Pengalaman saya dalam community management, pengelolaan media sosial, serta berbagai kegiatan dan proyek kreatif telah mengembangkan kemampuan saya dalam berkomunikasi, berkolaborasi, mengoordinasikan kegiatan, dan memahami kebutuhan komunitas.</p>
+ <p>Saya percaya bahwa pemahaman terhadap manusia tidak hanya diperoleh melalui teori, tetapi juga melalui pengalaman, interaksi, dan kemauan untuk terus belajar. Saya ingin menggabungkan perspektif psikologi dengan kemampuan komunikasi dan pengelolaan komunitas untuk menciptakan pengalaman yang bermakna bagi orang lain.</p></div>
+ <h3 style="margin-top:2rem">Bunga-Bunga Nilai Diri</h3><div class="grid" id="vals"></div><div class="panel" id="valp" aria-live="polite">Pilih sebuah bunga untuk membaca maknanya.</div></section>
+
+<section id="pendidikan"><p class="sub">Pendidikan</p><h2>Perpustakaan Perjalanan</h2>
+ <div class="shelf rv" id="shelf"></div><div class="panel" id="edp" aria-live="polite">Pilih sebuah buku untuk membukanya.</div></section>
+
+<section id="pengalaman"><p class="sub">Pengalaman</p><h2>Hal-Hal yang Telah Kuciptakan</h2><div class="tl" id="exp"></div></section>
+
+<section id="proyek"><p class="sub">Proyek</p><h2>Dunia Kecil yang Kubangun</h2><p>Setiap kartu adalah pintu menuju dunia kecil. Ketuk untuk membukanya.</p><div class="grid" id="proj"></div></section>
+
+<section id="keterampilan"><p class="sub">Keterampilan</p><h2>Hal-Hal yang Membentuk Diriku</h2><div class="chips" id="skills"></div><div class="panel" id="skp" aria-live="polite">Pilih sebuah keterampilan untuk melihat penerapannya.</div></section>
+
+<section id="filosofi"><p class="sub">Filosofi Diri</p><h2>Catatan dari Dalam Taman</h2>
+ <div class="page rv" id="jurnal"><p>Saya percaya bahwa setiap individu membawa cerita yang berbeda. Memahami seseorang membutuhkan lebih dari sekadar mendengar kata-katanya; dibutuhkan rasa ingin tahu, empati, dan kemauan untuk melihat sesuatu dari sudut pandang yang berbeda.</p>
+ <p>Bagi saya, setiap pengalaman adalah kesempatan untuk belajar, setiap kolaborasi adalah ruang untuk bertumbuh, dan setiap karya adalah cara untuk meninggalkan sesuatu yang bermakna.</p></div></section>
+
+<section id="kontak"><p class="sub">Kontak</p><h2>Sampai Jumpa di Bab Berikutnya</h2>
+ <p style="max-width:620px;margin:auto">Setiap pertemuan membuka cerita baru. Terima kasih telah meluangkan waktu untuk mengenal taman kecil ini. Semoga kita dapat menciptakan sesuatu yang bermakna bersama.</p>
+ <div class="cts" id="cts"></div>
+ <div class="row"><button class="btn" id="hub">Hubungi Saya</button><button class="btn ghost" id="awal">Kembali ke Awal</button><button class="btn ghost" id="replay">Buka Kembali Ceritaku</button></div></section>
+</main>
+<footer>© Gabriella Samuel, S.Psi. — Taman Pikiran</footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="box page" id="mbox"></div></div>
+<button id="top" aria-label="Kembali ke atas">↑</button>
+<div id="fairy" aria-live="polite"><div id="bubble" role="status"></div><button id="fbtn" aria-label="Peri pemandu, ketuk untuk pesan"><svg viewBox="0 0 64 64" width="64" height="64"><use href="#fsvg"/></svg></button></div>
+
+<script>
+// ===== DATA MUDAH DIEDIT: ganti teks bertanda [isi ...] dengan informasi asli =====
+const PH="";
+const DATA={
+ contact:{email:"gabriellasamuel09@gmail.com",phone:"081991009703",instagram:"https://instagram.com/harazuu__"},
+ values:[["🌼","Rasa Ingin Tahu","Dorongan untuk memahami mengapa manusia berpikir, merasa, dan bertindak seperti yang mereka lakukan."],["🌷","Empati","Mendengarkan dengan sungguh-sungguh dan melihat sesuatu dari sudut pandang orang lain."],["🌿","Tanggung Jawab","Menyelesaikan apa yang dipercayakan dengan jujur dan konsisten."],["🌸","Kolaborasi","Bertumbuh bersama; setiap orang membawa sesuatu yang berharga ke dalam kerja tim."],["🌱","Kemauan untuk Terus Belajar","Setiap pengalaman adalah benih bagi pemahaman yang baru."]],
+ edu:[{t:"Universitas Padjadjaran (Unpad)",c:"main",d:["Program Studi: Psikologi","Gelar: Sarjana Psikologi (S.Psi.)","IPK: 3,76/4,00","Status: Lulus"]},
+  {t:"SMA Kristen Kasih Kemuliaan",c:"b1",d:["Jenjang: Sekolah Menengah Atas"]},
+  {t:"SMP Kristen Tunas Bangsa Citra",c:"b2",d:["Jenjang: Sekolah Menengah Pertama"]},
+  {t:"SD Kristen Tunas Bangsa Citra",c:"b3",d:["Jenjang: Sekolah Dasar"]}],
+ exp:[{t:"Community Manager & Social Media Handler",o:"Motion Ime",p:"",
+   f:["Pengelolaan dan keterlibatan komunitas","Komunikasi dengan anggota komunitas","Penulisan konten dan copywriting","Pengelolaan media sosial","Promosi acara dan aktivitas komunitas","Koordinasi dan kolaborasi tim"],n:"[isi deskripsi tugas dan hasil kerja yang sebenarnya]"},
+  {t:"Volunteer — Motion Ime Festival (MIF 2025)",o:"Motion Ime",p:"Desember 2025 · JIExpo Kemayoran",f:["Kegiatan: Motion Ime Festival 2025"],n:"[isi tanggung jawab spesifik sebagai volunteer]"}],
+ proj:[{n:"Inisiatif Komunitas Motion Ime",s:"Pengelolaan komunitas, komunikasi, interaksi anggota, dan kegiatan komunitas.",r:PH,g:PH,pr:PH,h:PH,l:""},
+  {n:"Promosi Acara dan Festival",s:"Komunikasi acara, copywriting, promosi media sosial, publikasi, dan kolaborasi.",r:PH,g:PH,pr:PH,h:PH,l:""},
+  {n:"Penelitian Akademik tentang Psikologi",s:"Penelitian sekolah mengenai overthinking dan kecemasan pada siswa.",r:PH,g:"Mengkaji overthinking dan kecemasan pada siswa.",pr:"[isi proses penelitian yang sebenarnya]",h:"[isi hasil atau pembelajaran yang sebenarnya]",l:""},
+  {n:"Komunikasi Kreatif dan Media Sosial",s:"Copywriting, materi promosi, konten media sosial, dan komunikasi digital.",r:PH,g:PH,pr:PH,h:PH,l:""}],
+ skills:[["Community Management","Menjaga interaksi dan keterlibatan anggota komunitas; diterapkan dalam peran Community Manager di Motion Ime."],["Komunikasi","Menyampaikan gagasan dengan jelas dan empatik, didukung pemahaman psikologi tentang perilaku manusia."],["Kepemimpinan dan Koordinasi","Menyelaraskan orang dan tugas agar kegiatan berjalan teratur. [tambahkan contoh konkret]"],["Manajemen Acara","Terlibat dalam acara seperti Motion Ime Festival 2025. [tambahkan contoh konkret]"],["Manajemen Media Sosial","Mengelola kanal media sosial sebagai Social Media Handler di Motion Ime."],["Penulisan Konten dan Copywriting","Menulis konten dan teks promosi untuk komunitas dan acara."],["Pemecahan Masalah Kreatif","Mencari jalan keluar yang segar untuk kebutuhan komunitas. [tambahkan contoh konkret]"],["Manajemen Proyek","Merencanakan dan mengoordinasikan pekerjaan hingga selesai. [tambahkan contoh konkret]"],["Kolaborasi dan Kerja Sama Tim","Bekerja bersama tim dalam kegiatan komunitas dan acara."]],
+ msgs:{beranda:"Selamat datang di taman kecilku.",tentang:"Setiap pengalaman menyimpan pelajaran.",pendidikan:"Ayo, kita buka halaman berikutnya.",pengalaman:"Di balik setiap karya, ada cerita yang ingin dibagikan.",proyek:"Ketuk sebuah pintu untuk melihat dunia di dalamnya.",keterampilan:"Setiap bunga punya kisahnya sendiri.",filosofi:"Pelan-pelan saja, bacalah catatan ini.",kontak:"Terima kasih sudah berjalan-jalan di taman ini."},
+ idle:["Selamat datang di taman kecilku.","Setiap pengalaman menyimpan pelajaran.","Ayo, kita buka halaman berikutnya.","Di balik setiap karya, ada cerita yang ingin dibagikan.","Terima kasih sudah berjalan-jalan di taman ini."]
+};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SECS=[["beranda","Beranda"],["tentang","Tentang Saya"],["pendidikan","Pendidikan"],["pengalaman","Pengalaman"],["proyek","Proyek"],["keterampilan","Keterampilan"],["filosofi","Filosofi Diri"],["kontak","Kontak"]];
+$("#menu").innerHTML=SECS.map(([i,l])=>`<li><a href="#${i}">${l}</a></li>`).join("");
+$("#burger").onclick=e=>{const m=$("#menu").classList.toggle("show");e.currentTarget.setAttribute("aria-expanded",m)};
+$("#menu").onclick=e=>{if(e.target.tagName=="A"){$("#menu").classList.remove("show");$("#burger").setAttribute("aria-expanded",false)}};
+// stars & fireflies
+for(let i=0;i<(RM?6:16);i++){const f=document.createElement("i");f.className="fly";f.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${4+Math.random()*6}s;--x:${Math.random()*80-40}px;--y:${Math.random()*80-40}px`;$("#flies").append(f)}
+// toggles
+function toggleGroup(sel,cb){$$(sel).forEach(b=>b.onclick=()=>{$$(sel).forEach(x=>x.setAttribute("aria-pressed",x==b));cb(b)})}
+$("#vals").innerHTML=DATA.values.map((v,i)=>`<button class="card" data-i="${i}" aria-pressed="false"><span class="flower" aria-hidden="true">${v[0]}</span><b>${v[1]}</b></button>`).join("");
+toggleGroup("#vals .card",b=>{const v=DATA.values[b.dataset.i];$("#valp").innerHTML=`<b>${v[1]}</b><br>${v[2]}`;fairyAt(b)});
+$("#shelf").innerHTML=DATA.edu.map((e,i)=>`<button class="book ${e.c=="main"?"main":"s "+e.c}" data-i="${i}" aria-pressed="false">${e.t}</button>`).join("");
+toggleGroup("#shelf .book",b=>{const e=DATA.edu[b.dataset.i];$("#edp").innerHTML=`<h3 style="margin:0">${e.t}</h3>`+e.d.map(x=>`<div>${x}</div>`).join("")});
+$("#exp").innerHTML=DATA.exp.map(e=>`<div class="it rv"><details><summary>${e.t}</summary><p><b>${e.o}</b>${e.p?` · <span>${e.p}</span>`:""}</p><ul>${e.f.map(x=>`<li>${x}</li>`).join("")}</ul>${e.n&&e.n[0]!="["?`<p>${e.n}</p>`:""}</details></div>`).join("");
+$("#proj").innerHTML=DATA.proj.map((p,i)=>`<button class="card door" data-i="${i}" aria-haspopup="dialog">🚪<b>${p.n}</b>${p.s}</button>`).join("");
+const modal=$("#modal");let last;
+$$("#proj .card").forEach(b=>b.onclick=()=>{last=b;const p=DATA.proj[b.dataset.i];const f=(k,v)=>!v||v[0]=="["?"":`<dt>${k}</dt><dd>${v}</dd>`;
+ $("#mbox").innerHTML=`<h3 id="mt">${p.n}</h3><p>${p.s}</p><dl>${f("Peran saya",p.r)}${f("Tujuan proyek",p.g)}${f("Proses pengerjaan",p.pr)}${f("Hasil atau pembelajaran",p.h)}${p.l?`<dt>Tautan</dt><dd><a href="${esc(p.l)}" target="_blank" rel="noopener">Buka proyek</a></dd>`:""}</dl><button class="btn" id="mx">Tutup Pintu</button>`;
+ modal.classList.add("show");$("#mx").focus();$("#mx").onclick=closeM});
+function closeM(){modal.classList.remove("show");last&&last.focus()}
+modal.onclick=e=>{if(e.target==modal)closeM()};addEventListener("keydown",e=>{if(e.key=="Escape"&&modal.classList.contains("show"))closeM()});
+$("#skills").innerHTML=DATA.skills.map((s,i)=>`<button class="chip" data-i="${i}" aria-pressed="false">✿ ${s[0]}</button>`).join("");
+toggleGroup("#skills .chip",b=>{const s=DATA.skills[b.dataset.i];$("#skp").innerHTML=`<b>${s[0]}</b><br>${s[1].replace(/\s*\[.*?\]/,"")}`});
+// contact
+const C=DATA.contact;
+$("#cts").innerHTML=[["Email",C.email,C.email&&"mailto:"+C.email],["Telepon",C.phone,C.phone&&"tel:+62"+C.phone.slice(1)],["Instagram",C.instagram,C.instagram]].map(([n,v,h])=>h?`<a href="${esc(h)}" target="_blank" rel="noopener">${n}</a>`:`<span title="Belum diisi">${n}: <i class="ph">[belum diisi]</i></span>`).join("");
+$("#hub").onclick=()=>{C.email?location.href="mailto:"+C.email:say("Alamat email belum diisi. Isi DATA.contact di kode untuk mengaktifkan tombol ini.",5000)};
+$("#awal").onclick=()=>scrollTo({top:0,behavior:RM?"auto":"smooth"});
+// reveal, active section, top button
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("in")),{threshold:.15});$$(".rv").forEach(e=>io.observe(e));
+let curSec="",lastSay=0;
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;$$("#menu a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+id));if(id!=curSec){curSec=id;if(fairyOn&&Date.now()-lastSay>6000)say(DATA.msgs[id])}}}),{rootMargin:"-45% 0px -50% 0px"});
+$$("section").forEach(s=>so.observe(s));
+addEventListener("scroll",()=>$("#top").classList.toggle("show",scrollY>600),{passive:true});
+$("#top").onclick=$("#awal").onclick;
+// fairy
+let fairyOn=false,mx=innerWidth*.6,my=innerHeight*.5,fx=mx,fy=my,tgt=null,bt;
+const fairy=$("#fairy"),bub=$("#bubble"),coarse=matchMedia("(pointer:coarse)").matches||innerWidth<700;
+function say(t,ms=3800){lastSay=Date.now();bub.textContent=t;bub.classList.add("show");clearTimeout(bt);bt=setTimeout(()=>bub.classList.remove("show"),ms)}
+function sparkle(x,y,n=10){if(RM)n=3;for(let i=0;i<n;i++){const s=document.createElement("span");s.className="sp";s.textContent="✦";const a=Math.random()*6.28,d=20+Math.random()*40;s.style.cssText=`left:${x}px;top:${y}px;--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d}px;font-size:${8+Math.random()*10}px`;document.body.append(s);setTimeout(()=>s.remove(),950)}}
+function fairyAt(el){const r=el.getBoundingClientRect();tgt={x:r.left+r.width/2,y:r.top-10};setTimeout(()=>tgt=null,2500)}
+addEventListener("pointermove",e=>{if(e.pointerType=="mouse"){mx=e.clientX;my=e.clientY}});
+let k=0;$("#fbtn").onclick=()=>{const r=fairy.getBoundingClientRect();sparkle(r.left+32,r.top+32,14);say(DATA.idle[k++%DATA.idle.length])};
+function loop(){let tx,ty;if(tgt){tx=tgt.x;ty=tgt.y}else if(coarse){tx=innerWidth-90;ty=innerHeight-140+Math.sin(Date.now()/900)*10}else{tx=mx+50;ty=my+40}
+ tx=Math.max(8,Math.min(innerWidth-72,tx-32));ty=Math.max(60,Math.min(innerHeight-72,ty-32));const s=RM?1:.07;fx+=(tx-fx)*s;fy+=(ty-fy)*s;
+ fairy.style.transform=`translate(${fx}px,${fy}px)`;if(fx<130)bub.style.left="0";else bub.style.left="-20px";requestAnimationFrame(loop)}
+// intro
+const intro=$("#intro");
+function endIntro(){intro.classList.add("out");setTimeout(()=>{intro.style.display="none"},950);if(!fairyOn){fairyOn=true;fairy.classList.add("on");loop();setTimeout(()=>say(DATA.msgs.beranda),700)}scrollTo(0,0)}
+function startIntro(){intro.style.display="grid";intro.classList.remove("out");$("#bw").classList.remove("open");$("#open").disabled=false;$$(".pt").forEach(p=>p.remove());scrollTo(0,0)}
+$("#open").onclick=e=>{e.currentTarget.disabled=true;$("#bw").classList.add("open");const bw=$("#bw");
+ for(let i=0;i<(RM?6:36);i++){const p=document.createElement("span");p.className="pt";p.textContent=i%3?"✦":"❀";p.style.cssText=`color:${i%3?"#e3c27a":"#d9a7c7"};--x:${Math.random()*360-180}px;--y:${-60-Math.random()*320}px;--r:${Math.random()*360}deg;animation-delay:${.5+Math.random()*.8}s;font-size:${10+Math.random()*14}px`;bw.append(p)}
+ setTimeout(endIntro,RM?600:4600)};
+$("#skip").onclick=endIntro;$("#replay").onclick=startIntro;
+$("#open").focus();
+</script>
+</body></html>
